@@ -1,0 +1,141 @@
+{% extends 'home.html' %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block content %}
+    <title>Luxury Product Showcase</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Georgia', serif;
+            background: linear-gradient(to bottom, #0f0f0f, #1c1c1c); /* Consistent gradient */
+            color: #fff; /* White text for contrast */
+            line-height: 1.6;
+        }
+    
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+    
+        main {
+            flex-grow: 1; /* Ensures the main content stretches to fill the viewport */
+            padding: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+    
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #d4af37; /* Gold for luxury touch */
+            margin-bottom: 40px;
+            text-transform: uppercase;
+        }
+    
+        .category-section {
+            margin-bottom: 40px;
+            padding: 20px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
+        }
+    
+        .category-section h2 {
+            font-size: 1.8rem;
+            color: #d4af37;
+            margin-bottom: 20px;
+        }
+    
+        .product-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid layout */
+            gap: 20px;
+            list-style: none;
+            padding: 0;
+        }
+    
+        .product-item {
+            padding: 15px;
+            border: 1px solid #d4af37;
+            border-radius: 8px;
+            background: rgba(0, 0, 0, 0.8); /* Dark glass effect */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+            text-align: center; /* Center content */
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+    
+        .product-item:hover {
+            transform: translateY(-5px); /* Lift effect */
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.8);
+        }
+    
+        .product-item img {
+            max-width: 100%;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            transition: transform 0.3s ease;
+        }
+    
+        .product-item:hover img {
+            transform: scale(1.05); /* Subtle zoom on hover */
+        }
+    
+        .product-item strong {
+            color: #d4af37; /* Highlighted text */
+            display: block;
+            margin: 5px 0;
+        }
+    
+        .product-item button {
+            background-color: #d4af37;
+            color: #000;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+    
+        .product-item button:hover {
+            background-color: #b38e2f;
+            color: #fff;
+        }
+    </style>    
+</head>
+
+<body>
+    <main>
+        <h1>Luxury Product Showcase</h1>
+        {% for category in categories %}
+            <section class="category-section">
+                <h2>{{ category.category_name }}</h2>
+                <ul class="product-list">
+                    {% for product in products %}
+                        {% if product.category.category_id == category.category_id %}
+                            <li class="product-item">
+                                <img src="{{ product.product_image.url }}" alt="{{ product.product_name }}" /> <!-- Display product image -->
+                                <strong>{{ product.product_name }}</strong>
+                                <span>{{ product.product_description }}</span> <br>
+                                <strong>Price: </strong>₹{{ product.product_price|floatformat:2 }} <br>
+                                <form method="post" action="{% url 'cartadd' product.product_id %}">
+                                    {% csrf_token %}
+                                    <button type="submit">Add to Cart</button>
+                                </form>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </section>
+        {% endfor %}
+    </main>
+</body>
+</html>
+{% endblock %}

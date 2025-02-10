@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f1f1;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            
+        }
+
+        h1 {
+            text-align: center;
+            color: #d4af37; /* Luxurious gold color */
+            font-size: 36px;
+            margin-top: 50px;
+            font-family: 'Georgia', serif;
+        }
+
+        .form-container {
+            width: 400px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e0e0e0;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        input[type="text"], input[type="email"], input[type="password"], input[type="submit"] {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #d0c7c7;
+            margin-bottom: 10px;
+            outline: none;
+        }
+
+        input[type="text"], input[type="email"], input[type="password"] {
+            background-color: #f8f8f8;
+            transition: border 0.3s ease, background-color 0.3s ease;
+        }
+
+        input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus {
+            background-color: #fff;
+            border-color: #d4af37; /* Gold border on focus */
+        }
+
+        input[type="submit"] {
+            background-color: #d4af37; /* Gold color */
+            color: white;
+            cursor: pointer;
+            border: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #b8902f; /* Darker gold on hover */
+        }
+
+        .form-container p {
+            font-size: 14px;
+            color: #d4af37;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Register for an Account</h1>
+    <div class="form-container">
+        <form method="post">
+            <table>
+                {% csrf_token %}
+                {{ form.as_table }}
+            </table>
+            <input type="submit" value="Register">
+        </form>
+    </div>
+</body>
+</html>

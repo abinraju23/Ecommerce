@@ -1,0 +1,23 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Category</title>
+    <link rel="stylesheet" href="{% static 'css/category.css' %}">
+</head>
+
+
+<form method="post" class="category-form">
+    <h2>Category Form</h2>
+    <table>
+        {% csrf_token %}
+        {{ cform.as_table }}
+    </table>
+    <button type="submit" class="submit-btn">Save</button>
+</form>
+
+    
+

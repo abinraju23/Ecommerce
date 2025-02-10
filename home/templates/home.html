@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PrimeLux</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>Prime Lux</h1>
+        <ul class="nav__list">
+            <li class="nav__item"><a href="{% url 'home' %}" class="nav__link active">Home</a></li>
+            <li class="nav__item"><a href="{% url 'display' product_id=1 category_id=1 %}" class="nav__link">Shopping</a></li>
+            {% if user.is_authenticated %}
+                <li class="nav__item"><a href="{% url 'cart_detail' %}" class="nav__link">Cart</a></li>
+                <li class="nav__item"><a href="{% url 'logout' %}" class="nav__link">Logout</a></li>
+            {% else %}
+                <li class="nav__item">
+                    <a href="{% url 'login' %}" class="nav__link">Login</a> | 
+                    <a href="{% url 'register' %}" class="nav__link">Register</a>
+                </li>
+            {% endif %}
+        </ul>
+    </header>
+    <main>
+        {% block content %}
+        {% if user.is_authenticated %}
+            <p>Hello, {{ user.username }}!</p>
+            <a href="{% url 'newcategory' %}" class="nav__link">New Category</a>
+            <a href="{% url 'newproduct' %}" class="nav__link">New Product</a>
+
+        {% else %}
+            <a href="{% url 'register' %}" class="nav__link">Join Us Now</a>
+        {% endif %}
+        <h2>Welcome to Prime Lux</h2>
+        <p>Welcome to PrimeLux, where elegance meets exclusivity. 
+            At PrimeLux, we are dedicated to curating and offering only the finest luxury products that epitomize sophistication, quality, and style.
+             Our collection includes a wide array of premium items ranging from high-end fashion and exquisite jewelry to state-of-the-art technology and lavish home decor.
+            </p>
+        
+        {% endblock %}
+    </main>
+    <footer>
+        <section id="contact">
+            <h2>Contact Us</h2>
+            <p>Email: abinraju63@gmail.com</p>
+        </section>
+        <p>&copy; 2024 Luxury Shop. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

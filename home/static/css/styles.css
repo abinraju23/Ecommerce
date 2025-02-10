@@ -1,0 +1,125 @@
+/* General Styles */
+html, body {
+  font-family: 'Georgia', serif;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: url("{% static 'images/homebgmain.jpg' %}") center/cover no-repeat;
+  background-size: cover;
+  color: #E1D4C1; /* Light beige for text contrast */
+}
+
+/* Header Styles */
+header {
+  background: linear-gradient(90deg, #7E102C, #5A0C1F); /* Deep crimson gradient for header */
+  color: #ce8517; /* Light beige for text */
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #de9220; /* Light beige for brand name */
+  text-transform: uppercase;
+}
+
+.nav__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.nav__item {
+  margin: 0 1.5rem;
+}
+
+.nav__link {
+  color: #db8d19; /* Beige for navigation links */
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.nav__link:hover,
+.nav__link.active {
+  color: #FFD1D8; /* Softer pink-beige on hover or active */
+  
+}
+
+/* Main Content Styles */
+main {
+  flex: 1;
+  padding: 3rem;
+  text-align: center;
+}
+
+main h2 {
+  font-size: 2.5rem;
+  color: #eb9413; /* Beige for headings */
+  margin-bottom: 20px;
+}
+
+main p {
+  color: #e4a11b; /* Softer pink-beige for paragraph text */
+  font-size: 1.2rem;
+  margin: 1rem 0;
+}
+
+/* Footer Styles */
+footer {
+  text-align: center;
+  padding: 2rem;
+  background-color: #7E102C; /* Deep crimson for footer background */
+  color: #E1D4C1; /* Beige for footer text */
+  border-top: 2px solid #E1D4C1; /* Beige separator */
+}
+
+footer h2 {
+  color: #ce8415; /* Beige headings in footer */
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+footer p {
+  margin: 0.5rem 0;
+}
+
+/* Button Styles */
+button {
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
+  background: #7E102C; /* Crimson buttons */
+  color: #d18718; /* Beige button text */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.3s;
+}
+
+button:hover {
+  background: #5A0C1F; /* Darker crimson on hover */
+  transform: scale(1.05); /* Subtle lift effect */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .nav__item {
+    margin: 0 1rem;
+  }
+
+  header h1 {
+    font-size: 2rem;
+  }
+
+  main h2 {
+    font-size: 2rem;
+  }
+}

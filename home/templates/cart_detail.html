@@ -1,0 +1,145 @@
+{% extends 'home.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    {% block content %}
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Georgia', serif;
+            background: linear-gradient(to bottom, #0f0f0f, #1c1c1c); 
+            color: #fff; 
+            line-height: 1.6;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        main {
+            flex-grow: 1; 
+            padding: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #d4af37; 
+            margin-bottom: 40px;
+            text-transform: uppercase;
+        }
+
+        .category-section {
+            margin-bottom: 40px;
+            padding: 20px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
+        }
+
+        .category-section h2 {
+            font-size: 1.8rem;
+            color: #d4af37;
+            margin-bottom: 20px;
+        }
+
+        .cart-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+            gap: 20px;
+            list-style: none;
+            padding: 0;
+        }
+
+        .cart-item {
+            padding: 15px;
+            border: 1px solid #d4af37;
+            border-radius: 8px;
+            background: rgba(0, 0, 0, 0.8);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+            text-align: center; 
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .cart-item:hover {
+            transform: translateY(-5px); 
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.8);
+        }
+
+        .cart-item img {
+            max-width: 100%;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .cart-item:hover img {
+            transform: scale(1.05); /* Subtle zoom on hover */
+        }
+
+        .cart-item strong {
+            color: #d4af37; /* Highlighted text */
+            display: block;
+            margin: 5px 0;
+        }
+
+        .cart-item button {
+            background-color: #d4af37;
+            color: #000;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .cart-item button:hover {
+            background-color: #b38e2f;
+            color: #fff;
+        }
+
+        .total-cart-value {
+            margin-top: 30px;
+            text-align: right;
+            font-size: 1.5rem;
+            color: #d4af37;
+            border-top: 2px solid #d4af37; /* Separator for emphasis */
+            padding-top: 15px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>Luxury Shopping Cart</h1>
+        <ul class="cart-items">
+            {% for item in cart_items %}
+            <li class="cart-item">
+                <img src="{{ item.product.product_image.url }}" alt="{{ item.product.product_name }}">
+                <div>
+                    <strong>{{ item.product.product_name }}</strong>
+                    <span>Quantity: {{ item.quantity }}</span>
+                    <span>Total Price: ₹{{ item.totalprice|floatformat:2 }}</span>
+                </div>
+                <form method="post" action="{% url 'remove_item' item.product.product_id %}">
+                    {% csrf_token %}
+                    <button type="submit">Remove</button>
+                </form>
+            </li>
+            {% endfor %}
+        </ul>
+        <p class="total-cart-value">Total Cart Value: ₹{{ total_cart_value|floatformat:2 }}</p>
+    </main>
+</body>
+</html>
+{% endblock %}

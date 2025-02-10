@@ -1,0 +1,112 @@
+/* General Styles */
+html, body {
+    font-family: 'Georgia', serif; /* Changed to a more elegant font */
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: auto;
+    background: url('/static/images/h2.jpg') no-repeat center center fixed; /* Updated background */
+    background-size: cover; /* Ensures it covers the entire viewport */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: #ffd700; /* Gold text color */
+}
+
+/* Form Styles */
+.product-form,
+.category-form {
+    max-width: 600px;
+    width: 100%;
+    margin: 20px;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.8); /* Black background with transparency */
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.5); /* Gold glow effect */
+    border-radius: 10px;
+    color: #ffd700; /* Gold text color */
+}
+
+/* Heading Styles */
+.product-form h2,
+.category-form h2 {
+    text-align: center;
+    color: #ffd700; /* Gold color */
+    margin-bottom: 20px;
+    font-family: 'Georgia', serif; /* Elegant font */
+    font-weight: bold;
+}
+
+/* Table Styles */
+.product-form table,
+.category-form table {
+    width: 100%;
+    border-collapse: collapse;
+    align-items: center;
+}
+
+.product-form table td,
+.category-form table td {
+    padding: 10px;
+    color: #ffd700; /* Gold color */
+}
+
+.product-form table th,
+.category-form table th {
+    text-align: left;
+    padding: 10px;
+    color: #ffd700; /* Gold color */
+}
+
+/* Input Styles */
+.product-form table input[type="text"],
+.product-form table input[type="number"],
+.product-form table select,
+.category-form table input[type="text"],
+.category-form table input[type="number"],
+.category-form table select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ffd700; /* Gold border */
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin-top: 5px;
+    background-color: #1c1c1c; /* Dark background */
+    color: #ffd700; /* Gold text */
+}
+
+/* Option Styles */
+.product-form table select option,
+.category-form table select option {
+    background-color: #1c1c1c; /* Dark background */
+    color: #ffd700; /* Gold text */
+}
+
+/* Button Styles */
+.product-form .submit-btn,
+.category-form .submit-btn {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    background-color: #ffd700; /* Gold button */
+    color: #1c1c1c; /* Dark text */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-family: 'Georgia', serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    margin-top: 20px;
+}
+
+.product-form .submit-btn:hover,
+.category-form .submit-btn:hover {
+    background-color: #e5c100; /* Darker gold */
+    color: #000; /* Black text */
+}
+
+.product-form .submit-btn:active,
+.category-form .submit-btn:active {
+    background-color: #cba900; /* Even darker gold */
+    color: #000; /* Black text */
+}
